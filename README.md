@@ -1,4 +1,4 @@
-## About PhpMongoAdmin
+## About PhpMongoAdmin (PMDbA)
 
 PhpMongoAdmin is a Web-based MongoDb management console, written in PHP and leveraging great tools like Laravel and Vue.
 The familiar interface allows you to manage many aspects of your MongoDB installation:
@@ -6,9 +6,9 @@ The familiar interface allows you to manage many aspects of your MongoDB install
 PhpMongoAdmin source code is located here: [gtihub.com/php-mongo/admin](https://github.com/php-mongo/admin).  
 Read more here: [PhpMongoAdmin ReadMe](PHPMONGOADMIN.MD)
 
-## Docker-Compose-Full Stand-Alone Build
+## Docker-Compose-Full: Stand-Alone Build
 
-This build of PhpMongoAdmin is docker-compose all-inclusive build environment.
+This docker-compose build of PhpMongoAdmin is ann all-inclusive build environment with Apache2 & MongoDB.
 
 ### This is not a docker image build: check our [docker](https://github.com/php-mongo/docker) image repository for that one!
 
@@ -17,12 +17,18 @@ This build includes a <b>MongoDB</b> (image & container) and allows you to test 
 MongoDB's data will be persisted inside: /storage/mongodb/
 
 ## Requires
+- Git or Git bash
 - Recent version of Docker
     - tested successfully with version: 20.10.11 (docker-ce)
     - issue occurred using an earlier version (docker)
 - Recent version of docker-compose
     - tested successfully with version: 1.29.2
     - issue occurred using an earlier version along with an older docker
+- On Windows * installing Docker Desktop should provide the required environment
+
+## Quick Start
+Run this command from an empty directory to fetch the repository and begin the setup process:  
+$ wget https://phpmongoadmin.com/install/docker-all.sh -O - | bash
 
 ## How it works
 The application will be installed into the Host container at /usr/share/phpMongoAdmin  
@@ -30,7 +36,15 @@ An apache config will be copied to /etc/apache2/conf-available/phpMongoAdmin.con
 This configuration will make the application available at http://localhost/phpmongoadmin  
 The URL http://localhost/phpMongoAdmin will redirect to http://localhost/phpmongoadmin  
 The default web page (index.html) is linked as a volume from a directory within the application: /var/www/html  
-You can modify the mapping of that volume in the /docker/docker-compose.yml on line: 34
+You can modify the mapping of that volume in the /docker/docker-compose.yml on line: 34  
+If you prefer to use a VirtualHost type of installation use these files, interchange the names:
+- docker/docker-compose-vhost.yml >> docker/docker-compose.yml
+- docker/build/Dockerfile_vhost >> docker/build/Dockerfile
+- update the: ServerName value in this file:
+    - docker/build/php-mongo-web/config/vhost_phpMongoAdmin.conf
+- then run the setup process detailed below
+- Note: using the VirtualHost setup will change the location of the application codebase to:
+    - /var/hosting/phpmongoadmin
 
 ## Getting started
 
