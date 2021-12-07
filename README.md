@@ -146,9 +146,15 @@ Read the [setup guide](https://phpmongoadmin.com/support/documentation/setup) in
    b) If your application cannot deliver emails, you can access the reset email from the email log. All emailing is logged by default: this setting 'MAIL_LOG_CHANNEL=emails' can be disabled in the .env file.  
    c) Alternatively, delete the database/sqlite/database.sqlite file and run a new setup process: all existing login users and server configurations will be removed
 4) If the application loads, and you see an error message relating to database connection or no database, or an error message that contains: "Failed to parse MongoDB URI: 'mongodb+srv'" then it's likely that the .env file setting: IS_DOCKER_AP= might be set to false. Make sure this setting is true for docker builds
-5) If this repository in cloned to a Window box, when you run 'pmasetup win-build' and the last three lines shown after the build completes have error message like:  
+5) If this repository in cloned to a Windows box, when you run 'pmasetup win-build' and the last three lines shown after the build completes have error message like:  
    a) /etc/profile.d/phpmongoadmin.sh: line 3: syntax error near unexpected token `$'{\r'  
    b) this is due to Window rewriting the line endings - to fix do the following  
    c) Using Notepadd++ open the local version of the file: docker/build/php-mongo-web/scripts/phpmongoadmin.sh  
    d) Click > Edit > EOL Conversion > then select > Unix (LF) and save the file  
    e) Run: 'pmasetup win-build' again - the 3 error message lines should not appear after build completion   
+
+## Disclaimer
+Please be aware of the following:
+- PhpMongoAdmin and its parent entities PhpMongoTools and MFMAW do not by any means endorse, or warrant, the usability of any software product that we may suggest for use or as a requirement during any procedure to install, implement or build our application.
+- We do also provide a labour-intensive approach for manual installation that requires some command line skills but nonetheless still requires the use of some 3rd party software.
+- Regardless of the installation method you choose the use of external applications is unavoidable especially in regard to a web server environment choice and the inevitable installation of MongoDB.

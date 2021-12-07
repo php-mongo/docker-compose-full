@@ -7,5 +7,5 @@ A script call profile.sh will be automatically added in the container, this can 
 #!/bin/bash
 
 # Set composer auth to use token on each build
-export COMPOSER_AUTH={"githun-oauth":{"github.com":"GITHUB_SSO_TOKEN"}}
+export COMPOSER_AUTH={"github-oauth":{"github.com":"GITHUB_SSO_TOKEN"}}
 ```

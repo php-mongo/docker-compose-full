@@ -384,6 +384,14 @@ export const database = {
                 'dbAdminAnyDatabase',
                 'dbOwner',
             ];
+            let controlUser = rootGetters.getIsControlUser;
+            if (controlUser) {
+                commit( 'setCanUserReadDatabase', true);
+                commit( 'setCanUserWriteDatabase', true);
+                commit( 'setCanUserCreateDatabase', true);
+                commit( 'setCanUserDropDatabase', true);
+                return;
+            }
             let roles = rootGetters.getUserRoles;
             let readAllowed = false,
                 writeAllowed = false,
