@@ -27,8 +27,10 @@ MongoDB's data will be persisted inside: /storage/mongodb/
 - On Windows * installing Docker Desktop should provide the required environment
 
 ## Quick Start
-Run this command from an empty directory to fetch the repository and begin the setup process:  
-$ wget https://phpmongoadmin.com/install/docker-all.sh -O - | bash
+Run this command from an empty directory to fetch the repository and begin the setup process:
+- $ wget https://phpmongoadmin.com/install/docker-all.sh -O - | bash  
+  Using wget on Windows may result in a certificate error:
+- $ wget --no-check-certificate https://phpmongoadmin.com/install/docker-app.sh -O - | bash
 
 ## How it works
 The application will be installed into the Host container at /usr/share/phpMongoAdmin  
@@ -54,6 +56,9 @@ Follow these steps to get up and running with minimal fuss.
 - For setup on Windows, right-click and select 'Git Bash Here' (Git for Windows required)
 - List (ls-la) the directory contents to confirm that you can see:
     - a folder name 'docker', a file named 'pmasetup.sh'
+- On Windows:
+    - cat -v /docker/build/php-mongo-web/scripts/phpmongoadmin.sh
+    - If you see: ^M as line endings, use the fix listed in the last section: 5) before continuing
 
 #### At this point you should prepare the environment files
 The application will install 'as-is' but its highly recommended that you at least update the default passwords.  
@@ -74,7 +79,8 @@ Follow these steps to set up the environment:
 
 #### Now you are ready to execute the setup commands
 
-Type these commands at a prompt in the application root:
+Type these commands at the prompt in the application root:  
+<b>Hint!</b> the first time you build the application, when prompted to generate a new Encryption key: 1) Yes
 
 - source docker/pmasetup.sh
 - On Windows:
@@ -146,12 +152,15 @@ Read the [setup guide](https://phpmongoadmin.com/support/documentation/setup) in
    b) If your application cannot deliver emails, you can access the reset email from the email log. All emailing is logged by default: this setting 'MAIL_LOG_CHANNEL=emails' can be disabled in the .env file.  
    c) Alternatively, delete the database/sqlite/database.sqlite file and run a new setup process: all existing login users and server configurations will be removed
 4) If the application loads, and you see an error message relating to database connection or no database, or an error message that contains: "Failed to parse MongoDB URI: 'mongodb+srv'" then it's likely that the .env file setting: IS_DOCKER_AP= might be set to false. Make sure this setting is true for docker builds
-5) If this repository in cloned to a Windows box, when you run 'pmasetup win-build' and the last three lines shown after the build completes have error message like:  
-   a) /etc/profile.d/phpmongoadmin.sh: line 3: syntax error near unexpected token `$'{\r'  
-   b) this is due to Window rewriting the line endings - to fix do the following  
-   c) Using Notepadd++ open the local version of the file: docker/build/php-mongo-web/scripts/phpmongoadmin.sh  
-   d) Click > Edit > EOL Conversion > then select > Unix (LF) and save the file  
-   e) Run: 'pmasetup win-build' again - the 3 error message lines should not appear after build completion   
+5) Known errors on Windows:
+   a) When this repository in cloned to a Windows box, then run 'pmasetup win-build' and the last few lines displayed after the build completes have error message like:  
+   b) /etc/profile.d/phpmongoadmin.sh: line 3: syntax error near unexpected token `$'{\r'  
+   c) This is due to GIT for Windows rewriting the line endings and the file phpmongoadmin.sh is executed in the containers shell environment
+   d) A supposed fix is to add: autocrlf = false to a ~/.gitconfig file -- "good luck with that"...
+   e) To convert the 'crlf' back to 'lf' use the following procedure:
+   f) Using Notepadd++ open the local version of the file: docker/build/php-mongo-web/scripts/phpmongoadmin.sh  
+   g) Click > Edit > EOL Conversion > then select > Unix (LF) and save the file  
+   h) Run: 'pmasetup win-build' again - the 3 error message lines should not appear after build completion
 
 ## Disclaimer
 Please be aware of the following:

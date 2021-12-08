@@ -28,7 +28,9 @@ MongoDB's data will be persisted inside: /storage/mongodb/
 
 ## Quick Start
 Run this command from an empty directory to fetch the repository and begin the setup process:  
-$ wget https://phpmongoadmin.com/install/docker-all.sh -O - | bash
+- $ wget https://phpmongoadmin.com/install/docker-all.sh -O - | bash  
+Using wget on Windows may result in a certificate error:
+- $ wget --no-check-certificate https://phpmongoadmin.com/install/docker-app.sh -O - | bash
 
 ## How it works
 The application will be installed into the Host container at /usr/share/phpMongoAdmin  
@@ -54,7 +56,10 @@ Follow these steps to get up and running with minimal fuss.
 - For setup on Windows, right-click and select 'Git Bash Here' (Git for Windows required)
 - List (ls-la) the directory contents to confirm that you can see: 
   - a folder name 'docker', a file named 'pmasetup.sh'
-
+- On Windows:
+  - cat -v /docker/build/php-mongo-web/scripts/phpmongoadmin.sh
+  - If you see: ^M as line endings, use the fix listed in the last section: 5) before continuing
+  
 #### At this point you should prepare the environment files
 The application will install 'as-is' but its highly recommended that you at least update the default passwords.  
 Follow these steps to set up the environment:
@@ -74,7 +79,8 @@ Follow these steps to set up the environment:
 
 #### Now you are ready to execute the setup commands
 
-Type these commands at a prompt in the application root:
+Type these commands at the prompt in the application root:  
+<b>Hint!</b> the first time you build the application, when prompted to generate a new Encryption key: 1) Yes  
 
 - source docker/pmasetup.sh
 - On Windows:
