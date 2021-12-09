@@ -17,7 +17,7 @@
 #  See COPYRIGHT.php for copyright notices and further details.
 #
 
-PMA_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd );
+PMA_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd );
 
 pmasetup() {
     DOCKER_DIR="docker/"
