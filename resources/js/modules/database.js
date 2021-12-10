@@ -148,7 +148,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setCreateDatabaseStatus', 3 );
-                    commit( 'setErrorData', error);
+                    commit( 'setErrorData', error.toJSON().message);
                     console.log(error.toJSON())
                 });
         },
@@ -166,7 +166,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setDeleteDatabaseStatus', 3 );
-                    commit( 'setErrorData', error);
+                    commit( 'setErrorData', error.toJSON().message);
                     console.log(error.toJSON())
                 });
         },
@@ -187,7 +187,7 @@ export const database = {
                 .catch( (error) => {
                     commit( 'setCommandLoadStatus', 3 );
                     commit( 'setCommandResults', [] );
-                    commit( 'setErrorData', error);
+                    commit( 'setErrorData', error.toJSON().message);
                     console.log(error.toJSON())
                 });
         },
@@ -202,7 +202,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setTransferStatus', 3 );
-                    commit( 'setErrorData', error );
+                    commit( 'setErrorData', error.toJSON().message );
                     commit( 'setInserted', 0 );
                     console.log(error.toJSON())
                 });
@@ -218,7 +218,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setSaveProfileStatus', 3 );
-                    commit( 'setErrorData', error );
+                    commit( 'setErrorData', error.toJSON().message );
                     commit( 'setProfile', 0 );
                     console.log(error.toJSON())
                 });
@@ -235,7 +235,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setProfileStatus', 3 );
-                    commit( 'setErrorData', error );
+                    commit( 'setErrorData',error.toJSON().message );
                     commit( 'setProfile', 0 );
                     console.log(error.toJSON())
                 });
@@ -250,6 +250,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setRepairStatus', 3 );
+                    commit( 'setErrorData',error.toJSON().message );
                     console.log(error.toJSON())
                 });
         },
@@ -264,6 +265,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setDbAuthStatus', 3 );
+                    commit( 'setErrorData',error.toJSON().message );
                     console.log(error.toJSON())
                 });
         },
@@ -277,6 +279,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setDbUserStatus', 3 );
+                    commit( 'setErrorData',error.toJSON().message );
                     console.log(error.toJSON())
                 });
         },
@@ -290,6 +293,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit( 'setDeleteDbUserStatus', 3 );
+                    commit( 'setErrorData',error.toJSON().message );
                     console.log(error.toJSON())
                 });
         },
@@ -304,6 +308,7 @@ export const database = {
                 })
                 .catch( (error) => {
                     commit('setDatabaseListLoadStatus', 3);
+                    commit( 'setErrorData',error.toJSON().message );
                     console.log(error.toJSON())
                 });
         },
